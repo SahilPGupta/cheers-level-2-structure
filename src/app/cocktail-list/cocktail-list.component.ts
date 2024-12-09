@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CocktailCardComponent } from '../cocktail-card/cocktail-card.component';
 import { Cocktail } from '../data-model/cocktail.model';
 import { CocktailsService } from '../data-model/cocktails.service';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -19,9 +19,8 @@ import { map, startWith, switchMap } from 'rxjs/operators';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CocktailListComponent implements OnInit, OnDestroy {
+export class CocktailListComponent implements OnInit {
   allCocktailsData$: Observable<Cocktail[]>;
-  private destroy$ = new Subject<void>();
   searchText = new FormControl('');
 
   constructor(private cocktailsService: CocktailsService) {}
@@ -40,10 +39,5 @@ export class CocktailListComponent implements OnInit, OnDestroy {
         cocktail.name.toLowerCase().includes(searchValue.toLowerCase())
       ))
     );
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }

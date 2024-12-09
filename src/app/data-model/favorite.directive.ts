@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, HostListener, Input } from '@angular/core';
 import { Cocktail } from './cocktail.model';
 import { CocktailsService } from './cocktails.service';
 import { Observable } from 'rxjs';
@@ -10,27 +10,15 @@ import { Observable } from 'rxjs';
 export class FavoriteDirective {
   @Input() cocktail: Cocktail;
   allCocktailsData$: Observable<Cocktail[]>;
-  isFavoriteCocktail: boolean = false;
 
   constructor(
-    private element: ElementRef,
-    private renderer: Renderer2,
     private cocktailsService: CocktailsService
   ) { }
 
-  ngOnInit(): void {
-    this.allCocktailsData$ = this.cocktailsService.favorites$;
-  }
-
   @HostListener('click') onClick(): void {
     if (this.cocktail) {
-      this.isFavoriteCocktail = !this.isActive();
-      if (this.isFavoriteCocktail) {
-        this.renderer.addClass(this.element.nativeElement, "active");
-      } else {
-        this.renderer.removeClass(this.element.nativeElement, "active");
-      }
-      this.cocktailsService.changeFavorite(this.cocktail, this.isFavoriteCocktail)
+      let isFavoriteCocktail = !this.isActive();
+      this.cocktailsService.changeFavorite(this.cocktail, isFavoriteCocktail)
     }
   }
 
@@ -45,5 +33,3 @@ export class FavoriteDirective {
     return isActive;
   }
 }
-
-

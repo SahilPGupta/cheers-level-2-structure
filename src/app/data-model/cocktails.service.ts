@@ -48,11 +48,11 @@ export class CocktailsService {
   }
 
   private saveLocalStorage(favorites: Cocktail[]): void {
-    localStorage.setItem('allCocktailsData', JSON.stringify(favorites));
+    localStorage.setItem('favoriteCocktailsData', JSON.stringify(favorites));
   }
 
   private loadLocalStorage(): void {
-    const favoriteCocktails = localStorage.getItem('allCocktailsData');
+    const favoriteCocktails = localStorage.getItem('favoriteCocktailsData');
     if (favoriteCocktails) {
       this.favoritesSubject.next(JSON.parse(favoriteCocktails));
     }

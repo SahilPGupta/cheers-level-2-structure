@@ -27,8 +27,6 @@ export class CocktailViewComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-  isFavorite$: Observable<boolean>;
-
   ngOnInit() {
     this.cocktail$ = this.route.paramMap.pipe(
       switchMap(params => {
@@ -43,7 +41,6 @@ export class CocktailViewComponent implements OnInit {
   }
 
   isFavoriteCocktail(id: string) {
-    console.log('here');
     let isActive = false;
     this.cocktailsService.favorites$.subscribe(favorites => {
       if (favorites?.length) {
@@ -53,6 +50,4 @@ export class CocktailViewComponent implements OnInit {
     });
     return isActive;
   }
-
-
 }

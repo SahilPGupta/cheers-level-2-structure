@@ -3,7 +3,6 @@ import { Cocktail } from '../data-model/cocktail.model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FavoriteDirective } from '../data-model/favorite.directive';
-import { Observable } from 'rxjs';
 import { CocktailsService } from '../data-model/cocktails.service';
 
 @Component({
@@ -20,7 +19,6 @@ import { CocktailsService } from '../data-model/cocktails.service';
 })
 export class CocktailCardComponent{
   @Input() cocktail: Cocktail;
-  isFavorite$: Observable<boolean>;
 
   constructor(private cocktailsService: CocktailsService) {}
 
