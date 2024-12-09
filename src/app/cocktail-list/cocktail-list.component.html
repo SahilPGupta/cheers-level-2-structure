@@ -1,0 +1,18 @@
+<main>
+  <article>
+    <section class="filter-header">
+      <h2> Filters </h2>
+    </section>
+
+    <section class="input-section">
+      <h3>Cocktail name </h3>
+      <input [formControl]="searchText">
+    </section>
+
+    <section class="cards-container">
+      <div *ngFor="let cocktail of allCocktailsData$ | async" class="solo-card">
+        <app-cocktail-card [cocktail]="cocktail"></app-cocktail-card>
+      </div>
+    </section>
+  </article>
+</main>

@@ -1,0 +1,25 @@
+<article class="cocktail-card">
+  <div class="image-container">
+    <img [src]="cocktail.imageUrl" class="cocktail-img" alt="{{ cocktail.name }}">
+  </div>
+  <div class="ml-12">
+    <div class="cocktail-name">
+      <a [routerLink]="['/cocktails', cocktail.id]">
+        {{ cocktail.name }}
+      </a>
+      <span class="icon-star" [ngClass]="{'active': isFavoriteCocktail(cocktail.id)}" appFavorite [cocktail]="cocktail"></span>
+    </div>
+
+    <div>
+      <span class="alcoholic" [ngClass]="{'alcoholic-drink': cocktail.isAlcoholic, 'non-alcoholic-drink': !cocktail.isAlcoholic}">
+        {{cocktail.isAlcoholic ? 'Alcoholic': 'Non alcoholic'}}
+      </span>
+    </div>
+
+    <div>
+      <ng-container *ngFor="let item of cocktail.ingredients;">
+        <span class="item-class">{{ item }} | </span>
+      </ng-container>
+    </div>
+  </div>
+</article>

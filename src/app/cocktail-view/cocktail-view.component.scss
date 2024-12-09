@@ -1,0 +1,33 @@
+.back-button {
+  background: lightgrey;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.layout {
+  display: flex;
+  align-items: center;
+}
+
+.attrib {
+  width: 30%;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.alcoholic {
+  font-size: 12px;
+  padding: 4px 16px;
+  border-radius: 10px;
+}
+
+.alcoholic-drink {
+  background: lightblue;
+}
+
+.non-alcoholic-drink {
+  background: lightgreen;
+}

@@ -1,0 +1,53 @@
+<article>
+  <button class="back-button">
+    <a [routerLink]="['/cocktails']">
+      Back
+    </a>
+  </button>
+  <div *ngIf="cocktail$ | async as cocktail; else loading" style="display: flex;">
+    <div class="width-50">
+      <img [src]="cocktail.imageUrl" alt="{{ cocktail.name }}">
+    </div>
+    <div class="width-50">
+      <div class="layout">
+        <h1>
+          {{ cocktail.name }}
+          <span class="icon-star" [ngClass]="{'active': isFavoriteCocktail(cocktail.id)}" appFavorite [cocktail]="cocktail"></span>
+        </h1>
+      </div>
+
+      <div class="layout">
+        <div class="attrib">
+          Type
+        </div>
+        <span class="alcoholic" [ngClass]="{'alcoholic-drink': cocktail.isAlcoholic, 'non-alcoholic-drink': !cocktail.isAlcoholic}">
+          {{cocktail.isAlcoholic ? 'Alcoholic': 'Non alcoholic'}}
+        </span>
+      </div>
+
+      <div class="layout">
+        <div class="attrib">
+          Ingredients
+        </div>
+        <ng-container>
+          <ul>
+            <li *ngFor="let item of cocktail.ingredients;">
+              <span>{{ item }}</span>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+
+      <div class="layout">
+        <div class="attrib">
+          Ingredients
+        </div>
+        <span>{{ cocktail.instructions }} </span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<ng-template #loading>
+  <p>No cocktail found</p>
+</ng-template>
